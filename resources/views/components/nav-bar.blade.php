@@ -1,35 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between p-4">
+  <a class="navbar-brand h1" href="/{{ url('/') }}">
+      Recraftify
+  </a>
+  <div>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link {{ Request::path() ==  'leaderboard' ? 'active' : '' }}" 
+           href="{{ url('/leaderboard') }}">
+          LEADERBOARD
+        </a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link {{ Request::path() ==  'discussion' ? 'active' : '' }}" 
+            href="{{ url('/discussion') }}">
+            DISCUSSION
+        </a>
+      </li>
+      <li class="nav-item">
+        <a  class="nav-link {{ Request::path() ==  'discussion' ? 'active' : '' }}" 
+            href="{{ url('/recycle') }}">
+            RECYCLE
+        </a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::path() ==  'marketplace' ? 'active' : '' }}" 
+        href="{{ url('/marketplace') }}">
+        MARKETPLACE
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Request::path() ==  'profile' ? 'active' : '' }}" 
+           href="{{ url('/prfile') }}">
+           PROFILE
+        </a>
+      </li>
+    </ul>
+  </div>    
+</nav>
   
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>

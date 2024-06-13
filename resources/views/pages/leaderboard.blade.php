@@ -9,6 +9,5 @@
 </head>
 <body>
     <x-navbar />
-    HOME
 </body>
 </html>
