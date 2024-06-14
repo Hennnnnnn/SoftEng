@@ -1,0 +1,16 @@
+:root {
+    --main-dark-green: #579966;
+    --main-light-green: #D0DBBF;
+}
+
+.bg-main-dark-green {
+    background-color: var(--main-dark-green) !important;
+}
+
+.main-dark-green {
+    color: var(--main-dark-green) !important;
+}
+
+.bg-main-light-green {
+    background-color: var(--main-light-green) !important;
+}

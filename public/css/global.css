@@ -1,0 +1,5 @@
+@import './global/colours.css';
+
+.navbar-active {
+    color: #cdcdcd !important;
+}

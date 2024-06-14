@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('splash');
+    return view('pages.home');
+});
+
+Route::get('/leaderboard', function () {
+    return view('pages.leaderboard');
 });
 
 Route::get('/dashboard', function () {
