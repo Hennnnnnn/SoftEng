@@ -37,7 +37,10 @@ Route::get('/discussion', function() {
     return view('pages.discussion');
 });
 
-Route::get('/recycle', [RecyclingItemController::class, 'create'])->name('recycle.create');
-Route::post('/recycle', [RecyclingItemController::class, 'store'])->name('recycle.store');
+Route::middleware('auth')->group(function() {
+    Route::get('/recycle', [RecyclingItemController::class, 'create'])->name('recycle.create');
+    Route::post('/recycle', [RecyclingItemController::class, 'store'])->name('recycle.store');
+});
+
 
 require __DIR__.'/auth.php';

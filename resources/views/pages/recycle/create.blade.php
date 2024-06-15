@@ -13,7 +13,9 @@
                     <p class="mb-0" style="font-weight: bold; font-size: 25px;">Recycle Bin</p>
                 </div>
                 <div>
-                    <p class="mb-0" style="font-size: 25px;">Your Points : xxx</p>
+                    @foreach ($users as $u)
+                        <option value="{{ $u->id }}">Your Points: {{ $u->points }}</option>
+                    @endforeach
                 </div>
             </div>
 
