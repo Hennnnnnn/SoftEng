@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecyclingItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/leaderboard', function () {
     return view('pages.leaderboard');
-});
+})->middleware(['auth', 'verified'])->name('leaderboard');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,5 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/discussion', function() {
+    return view('pages.discussion');
+});
+
+Route::get('/recycle', [RecyclingItemController::class, 'create'])->name('recycle.create');
+Route::post('/recycle', [RecyclingItemController::class, 'store'])->name('recycle.store');
 
 require __DIR__.'/auth.php';
