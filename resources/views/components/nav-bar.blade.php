@@ -36,21 +36,14 @@
                     </a>
                 </li>
             @else
-                <li class="nav-item">
-                    <a class="nav-link"
-                        href="{{ url('/login') }}">
-                        <button
-                            style="background-color: #4CAF50; /* Green */
-                border: none;
-                color: white;
-                padding: 0 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                cursor: pointer;
-                border-radius: 10px;">LOGIN</button>
-                    </a>
+                <li class="nav-item ml-3">
+                    <button
+                    type="button"
+                    class="btn btn-light btn-sm p-0 px-3">
+                        <a class="nav-link m-0" href="{{ url('/login') }}">
+                            LOGIN 
+                        </a>
+                    </button>
                 </li>
             @endif
         </ul>

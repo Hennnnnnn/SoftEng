@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecyclingItemController;
@@ -15,13 +17,22 @@ use App\Http\Controllers\RecyclingItemController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [
+    HomeController::class, 'show'
+]);
 
-Route::get('/leaderboard', function () {
-    return view('pages.leaderboard');
-})->middleware(['auth', 'verified'])->name('leaderboard');
+// Route::get('/leaderboard', function () {
+//     return view('pages.leaderboard');
+// });
+
+Route::get('/leaderboard', [
+    LeaderboardController::class, 'show'
+])->middleware(['auth', 'verified'])->name('leaderboard');
+
+
+Route::get('/diy-list', [
+    HomeController::class, 'showList'
+])->name('diy-list');;
 
 Route::get('/dashboard', function () {
     return view('dashboard');

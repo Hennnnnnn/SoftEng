@@ -3,3 +3,43 @@
 .navbar-active {
     color: #cdcdcd !important;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.min-vh-90 {
+    min-height: 70vh !important;
+}
+
+.w-60 {
+    max-width: 60% !important;
+}
+
+.w-90 {
+    max-width: 90% !important;
+}
+
+.fs-12 {
+    font-size: 12px !important;
+}
+
+.horizontal-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Hide scrollbar for all browsers except Firefox */
+.overflow-auto::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.overflow-auto {
+    scrollbar-width: none;
+}
+
+

@@ -14,3 +14,7 @@
 .bg-main-light-green {
     background-color: var(--main-light-green) !important;
 }
+
+.border-main-dark-green {
+    border-color: var(--main-dark-green) !important;
+}
