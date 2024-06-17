@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\MarketplaceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecyclingItemController;
@@ -44,9 +46,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/discussion', function() {
-    return view('pages.discussion');
-});
+Route::get('/discussion', [
+    DiscussionController::class, 'show'
+])->middleware(['auth', 'verified'])->name('discussion');
+
+Route::get('/marketplace', [
+    MarketplaceController::class, 'show'
+])->middleware(['auth', 'verified'])->name('marketplace');
 
 Route::middleware('auth')->group(function() {
     Route::get('/recycle', [RecyclingItemController::class, 'create'])->name('recycle.create');

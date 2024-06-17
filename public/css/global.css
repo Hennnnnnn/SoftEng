@@ -15,6 +15,10 @@ html, body {
     min-height: 70vh !important;
 }
 
+.max-vh-75 {
+    max-height: 75vh !important;
+}
+
 .w-60 {
     max-width: 60% !important;
 }
@@ -43,3 +47,14 @@ html, body {
 }
 
 
+.no-border:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.img-circle {
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%;
+    object-fit: cover;
+}
