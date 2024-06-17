@@ -44,7 +44,7 @@
                     type="button"
                     class="btn btn-light btn-sm p-0 px-3">
                         <a class="nav-link m-0" href="{{ url('/login') }}">
-                            LOGIN 
+                            LOGIN
                         </a>
                     </button>
                 </li>
