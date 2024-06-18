@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-main-dark-green justify-content-between p-4 fixed-top">
-    <a class="text-decoration-none h2 text-light font-weight-bold" href="/{{ url('/') }}">
+    <a class="text-decoration-none h2 text-light font-weight-bold" href="{{ url('/') }}">
         Recraftify
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

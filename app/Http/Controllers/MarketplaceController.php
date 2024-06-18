@@ -9,8 +9,10 @@ class MarketplaceController extends Controller
 {
     //
 
-    public function show() {
-        $list = product::all();
+    public function show(Request $request) {
+        $query = $request->input('query');
+
+        $list = $query ? product::where('productName', 'like', '%'.$query.'%')->get() : product::all();
         return view('pages.marketplace.marketplace', compact('list'));
     }
 

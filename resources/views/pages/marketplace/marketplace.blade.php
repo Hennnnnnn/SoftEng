@@ -5,13 +5,13 @@
 <div class="p-4">
     <div class="row">
         <div class="col-12 col-md-10">
-            <form action="{{ route('diy-list') }}" method="GET" id="searchForm" class="input-group w-75">
-                <input type="text" name="query" id="searchBox" placeholder="Search..."
+            <form action="{{ route('marketplace') }}" method="GET" id="searchForm" class="input-group w-75">
+                <input type="text" name="query" id="searchBox" placeholder="Search..." value="{{ $query ?? '' }}"
                     class="form-control rounded-pill shadow p-3 mt-4">
             </form>
         </div>
 
-        <div class="col-2 d-flex align-items-center justify-content-end">
+        <div class="col-12 col-md-2 d-flex align-items-center justify-content-end">
             <a href="{{ route('marketplace.create') }}" class="btn bg-main-dark-green text-light">
                 +
             </a>
@@ -19,46 +19,47 @@
     </div>
 
     <div class="row mt-3">
-        @foreach ($list as $item)
-            <div class="col-12 col-md-3 mt-3 mr-4">
-                <div class="card shadow">
-                    <img src="{{ $item->image }}" class="card-img-top rounded img-thumbnail">
-                    </img>
-                    <div class="card-body">
+        @forelse ($list as $item)
+            <div class="col-12 col-md-3 mt-3">
+                <div class="card shadow h-100">
+                    <div class="card-img-container">
+                        <img src="{{ $item->image }}" alt="Image of {{ $item->name }}" class="card-img-top">
+                    </div>
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">
-                            [{{ $item->productName }}] {{ $item['name'] }}
+                            [{{ $item->productName }}] {{ $item->name }}
                         </h5>
-                        <p class="card-text">
-                            <span class="border border-main-dark-green p-1 mr-3">
-                                @if($item->pengambilan)
+                        <p class="card-text mb-1">
+                            @if($item->pengambilan)
+                                <span class="border border-main-dark-green p-1 mr-3">
                                     Bebas Pengambilan
-                                @else
+                                </span>
+                            @endif
 
-                                @endif
-                            </span>
-                            <span class="border border-main-dark-green p-1">
-                                @if($item->delivery)
+                            @if($item->delivery)
+                                <span class="border border-main-dark-green p-1">
                                     Gratis Ongkir
-                                @else
-                                    GA TAU MAU ISI APA
-                                @endif
-                            </span>
+                                </span>
+                            @endif
                         </p>
-                        <p class="card-text main-dark-green font-weight-bold h5">
-                            {{ $item->productProce }}
+
+                        <p class="card-text main-dark-green font-weight-bold h5 mb-1">
+                            {{ $item->productPrice }}
                         </p>
-                        @if(isset($item['sold']) && $item['sold'])
-                        <div class="card-text">
-                            <span class="fs-12">
-                                {{ $item->sold }}
-                                Terjual
-                            </span>
-                        </div>
-                        @else
-                        @endIf
+                        @if(isset($item->sold) && $item->sold)
+                            <div class="card-text mt-auto">
+                                <span class="fs-12">
+                                    {{ $item->sold }} Terjual
+                                </span>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="col-12">
+                <p class="text-center">No products found.</p>
+            </div>
+        @endforelse
     </div>
 </div>

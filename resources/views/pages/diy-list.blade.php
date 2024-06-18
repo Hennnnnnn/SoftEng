@@ -2,10 +2,10 @@
 
 <x-navbar />
 <div class="p-4">
-    <form action="{{ route('diy-list') }}" method="GET" id="searchForm" class="input-group w-90 mx-auto"> 
+    <form action="{{ route('diy-list') }}" method="GET" id="searchForm" class="input-group w-90 mx-auto">
         <input type="text" name="query" id="searchBox" placeholder="Search..." class="form-control rounded-pill shadow p-3 mt-4">
     </form>
-    
+
     <div class="row mt-4">
         <div class="col-10 col-md-6">
             <span class="font-weight-bold h5">

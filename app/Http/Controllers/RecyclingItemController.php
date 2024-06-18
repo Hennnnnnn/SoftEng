@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
-
 class RecyclingItemController extends Controller
 {
     /**
@@ -50,23 +49,44 @@ class RecyclingItemController extends Controller
         // Calculate points to be awarded
         $pointsPerItem = 10; // Example: 10 points per item recycled
 
-        // Retrieve the User record and update points using raw SQL query
-        $userId = Auth::id();
-        $affected = DB::update('UPDATE users SET points = points + ? WHERE id = ?', [$validatedData['quantity'] * $pointsPerItem, $userId]);
+        try {
+            // Begin a database transaction
+            DB::beginTransaction();
 
-        if ($affected === 0) {
-            return redirect()->back()->with('error', 'User not found or points not updated.');
+            // Retrieve the authenticated User instance
+            $user = Auth::user();
+
+            // Update user points
+            $user->points += $validatedData['quantity'] * $pointsPerItem;
+            $user->save();
+
+            // Create a new RecyclingItem record and associate it with the authenticated user
+            $recyclingItem = new RecyclingItem();
+            $recyclingItem->type = $validatedData['type'];
+            $recyclingItem->quantity = $validatedData['quantity'];
+            $recyclingItem->pick_up_address = $validatedData['pick_up_address'];
+            $recyclingItem->pick_up_date = $validatedData['pick_up_date'];
+            $recyclingItem->telephone_number = $validatedData['telephone_number'];
+            $recyclingItem->user_id = $user->id; // Assign the authenticated user's ID
+            $recyclingItem->save();
+
+            // Commit the transaction
+            DB::commit();
+
+            // Log the user's points
+            Log::info('User points updated: ' . $user->points);
+
+            // Redirect back to the create page with success message
+            return redirect()->route('recycle.create')->with('success', 'Recycling item created successfully and points updated.');
+        } catch (\Exception $e) {
+            // Rollback the transaction on error
+            DB::rollBack();
+
+            // Log the error
+            Log::error('Error storing recycling item: ' . $e->getMessage());
+
+            // Redirect back to the create page with error message
+            return redirect()->back()->with('error', 'Failed to store recycling item. Please try again.');
         }
-
-        // Create a new RecyclingItem record
-        $validatedData['user_id'] = $userId; // Assign the user_id to the validated data
-        RecyclingItem::create($validatedData);
-
-        // Log the user's points
-        $user = Auth::user();
-        Log::info('User points updated: ' . $user->points);
-
-        // Redirect back to the create page with success message
-        return redirect()->route('recycle.create')->with('success', 'Recycling item created successfully and points updated.');
     }
 }

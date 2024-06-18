@@ -1,4 +1,3 @@
-
 @include('partials.head')
 
 <x-navbar />
@@ -7,13 +6,13 @@
     <div class="content-box bg-light min-vh-90 p-5 rounded-4 w-60">
         <div class="row">
             <div class="col-12 col-md-6 text-right font-weight-bold">
-               <span class=h5>
+                <span class=h5>
                     Trending DIY Tutorials :
-                </span> 
+                </span>
             </div>
         </div>
         <div class="row mt-4">
-            @foreach($list as $item)
+            @foreach ($list as $item)
                 <div class="col-12 col-md-6 row mt-3">
                     <div class="col-1">
                         {{ $loop->index + 1 }}.
@@ -28,7 +27,7 @@
                             </span>
                         </div>
                         <div class="col-12">
-                                {{ $item['username'] }}
+                            {{ $item['username'] }}
                         </div>
                         <div class="col-12">
                             <span class="fs-12">
@@ -44,8 +43,7 @@
 
             </div>
             <div class="col-12 col-md-3">
-                <div
-                    class="rounded-pill btn bg-main-dark-green shadow w-100 text-center align-middle">
+                <div class="rounded-pill btn bg-main-dark-green shadow w-100 text-center align-middle">
                     <a a href="/diy-list" class="text-decoration-none text-light font-weight-bold">
                         See more tutorials >
                     </a>
