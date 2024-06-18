@@ -7,7 +7,6 @@
 
     <div class="row justify-content-center">
         <div class="col-md-10">
-
             <div class="d-flex justify-content-between">
                 <div>
                     <p class="mb-0" style="font-weight: bold; font-size: 25px;">Recycle Bin</p>

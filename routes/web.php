@@ -50,14 +50,16 @@ Route::get('/discussion', [
     DiscussionController::class, 'show'
 ])->middleware(['auth', 'verified'])->name('discussion');
 
-Route::get('/marketplace', [
-    MarketplaceController::class, 'show'
-])->middleware(['auth', 'verified'])->name('marketplace');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/marketplace', [MarketplaceController::class, 'show'])->name('marketplace');
+    Route::get('/marketplace/create', [MarketplaceController::class, 'view'])->name('marketplace.create');
+    Route::post('/marketplace/update', [MarketplaceController::class, 'store'])->name('marketplace.store');
+});
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::get('/recycle', [RecyclingItemController::class, 'create'])->name('recycle.create');
     Route::post('/recycle', [RecyclingItemController::class, 'store'])->name('recycle.store');
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

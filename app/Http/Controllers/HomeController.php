@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //
     public function show () {
 
         $list = [
@@ -14,7 +13,7 @@ class HomeController extends Controller
                 "name" => "DIY TUTOR 1",
                 "username" => "user1",
                 "likes" => 100000,
-                
+
             ],
             [
                 "name" => "DIY TUTOR 2",
@@ -37,7 +36,6 @@ class HomeController extends Controller
                 "name" => "DIY TUTOR 1 NEW",
                 "username" => "user1",
                 "likes" => 100000,
-                
             ],
             [
                 "name" => "DIY TUTOR 2 NEW",
@@ -53,7 +51,7 @@ class HomeController extends Controller
                 "name" => "DIY TUTOR 4 NEW",
                 "username" => "user1",
                 "likes" => 100000,
-                
+
             ],
             [
                 "name" => "DIY TUTOR 5 NEW",
@@ -69,7 +67,7 @@ class HomeController extends Controller
                 "name" => "DIY TUTOR 7 NEW",
                 "username" => "user1",
                 "likes" => 100000,
-                
+
             ],
             [
                 "name" => "DIY TUTOR 8 NEW",
