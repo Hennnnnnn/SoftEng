@@ -38,12 +38,15 @@
                         <p class="card-text main-dark-green font-weight-bold h5">
                             {{ $item['price'] }}
                         </p>
+                        @if(isset($item['sold']) && $item['sold'])
                         <div class="card-text">
                             <span class="fs-12">
                                 {{ $item['sold'] }}
                                 Terjual
                             </span>
                         </div>
+                        @else
+                        @endIf
                     </div>
                 </div>
             </div>

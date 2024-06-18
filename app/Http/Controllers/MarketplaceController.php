@@ -103,8 +103,7 @@ class MarketplaceController extends Controller
                 'name' => 'DIY Piggy Bank2',
                 'pengambilan' => 'Bebas Pefsangambilan',
                 'delivery' => 'Gratifsafss',
-                'price' => 'Rp, 350000000',
-                'sold' => 1
+                'price' => 'Rp, 350000000'
             ]
         ];
 
