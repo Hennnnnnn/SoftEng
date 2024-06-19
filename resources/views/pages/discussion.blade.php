@@ -99,27 +99,45 @@
                 </div>
             </div>
             <div class="row mt-3">
-                @foreach ($userList as $item)
+
+            @php
+                $loggedInUserId = auth()->id();
+            @endphp
+
+            @foreach ($userList as $u)
+                @if ($u->id !== $loggedInUserId)
                     <div class="col-12 mt-3">
                         <div class="row">
                             <div class="col-3 align-middle">
-                                <img src="https://picsum.photos/150" class="img-circle">
+                                <img src="{{ $u->image }}" class="img-circle">
                             </div>
                             <div class="col-6 d-flex align-items-end pb-3">
                                 <span>
-                                    {{ $item['username'] }}
+                                    {{ $u->name }}
                                 </span>
                             </div>
                             <div class="col-3 d-flex align-items-center justify-content-end">
-                                <button type="button"
-                                    class="rounded-3 btn bg-main-dark-green shadow text-center align-middle text-light font-weight-bold px-3">
-                                    Follow
-                                </button>
-
+                                @if (Auth::user()->following->contains($u->id))
+                                    <form action="{{ route('user.unfollow', $u->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="rounded-3 btn bg-danger shadow text-center align-middle text-light font-weight-bold px-3">
+                                            Unfollow
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('user.follow', $u->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="rounded-3 btn bg-main-dark-green shadow text-center align-middle text-light font-weight-bold px-3">
+                                            Follow
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @endif
+            @endforeach
+
             </div>
         </div>
     </div>

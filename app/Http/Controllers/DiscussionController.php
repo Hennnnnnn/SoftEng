@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class DiscussionController extends Controller
 {
@@ -31,17 +32,7 @@ class DiscussionController extends Controller
             ]
         ];
 
-        $userList = [
-            [
-                'username' => 'user1'
-            ],
-            [
-                'username' => 'user2'
-            ],
-            [
-                'username' => 'user3'
-            ]
-            ];
+        $userList = User::all();
 
         return view('pages.discussion', compact('postList', 'userList'));
     }
