@@ -1,7 +1,7 @@
 @import './global/colours.css';
 
 .navbar-active {
-    color: #cdcdcd !important;
+    font-weight: bold !important;
 }
 
 html, body {

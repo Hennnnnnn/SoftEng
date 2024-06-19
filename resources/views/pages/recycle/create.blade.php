@@ -7,14 +7,14 @@
         <div class="col-md-10">
             <div class="d-flex justify-content-between">
                 <div>
-                    <p class="mb-0" style="font-weight: bold; font-size: 25px;">Recycle Bin</p>
+                    <p class="mt-4" style="font-weight: bold; font-size: 20px;">Recycle Bin</p>
                 </div>
                 <div>
-                    <p>Your Points: {{ Auth::user()->points }}</p>
+                    <p class="mt-4" style="font-size: 18px">Your Points: {{ Auth::user()->points }}</p>
                 </div>
             </div>
 
-            <div class="mt-3">
+            <div class="">
                 <form method="POST" action="{{ route('recycle.store') }}">
                     @csrf
 
@@ -44,7 +44,7 @@
                             required>
                     </div>
 
-                    <div class="text-center">
+                    <div class="text-center py-4">
                         <button type="submit" class="btn btn-primary" style="width: 50%; background-color: #579966; box-shadow: 0px 8px 10px -10px rgba(0,0,0,0.5); border: none;">Submit</button>
                     </div>
                 </form>
