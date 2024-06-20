@@ -100,3 +100,17 @@ html, body {
 .h-100 {
     height: 100%;
 }
+
+
+.square-label {
+    display: inline-block;
+    width: 100px; 
+    height: 100px; 
+    border: 2px solid #ccc; 
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
