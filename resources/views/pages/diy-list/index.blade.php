@@ -23,7 +23,9 @@
         @foreach($list as $item)
         <div class="col-3">
             <div class="card shadow mr-4 my-1">
-                <img src="https://picsum.photos/50" class="card-img-top rounded img-thumbnail">
+                <div class="card-img-container">
+                    <img src="https://picsum.photos/50" class="card-img-top rounded img-thumbnail">
+                </div>
                 </img>
                 <div class="card-body">
                     <h5 class="card-title">
@@ -55,7 +57,9 @@
         @foreach($list as $item)
             <div class="col-12 col-md-3 mt-3 mr-4">
                 <div class="card shadow">
-                    <img src="https://picsum.photos/50" class="card-img-top rounded img-thumbnail">
+                    <div class="card-img-container">
+                        <img src="https://picsum.photos/50" class="card-img-top rounded img-thumbnail">
+                    </div>
                     </img>
                     <div class="card-body">
                         <h5 class="card-title">
