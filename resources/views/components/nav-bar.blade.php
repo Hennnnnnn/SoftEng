@@ -39,7 +39,7 @@
                         <a class="nav-link p-2 d-flex align-items-center dropdown-toggle {{ Request::path() == 'profile' ? 'navbar-active' : '' }}"
                             href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img src="{{ asset('storage/profile_images/' . Auth::user()->image) }}" alt="Profile Photo"
+                            <img src="{{ asset('upload/profile_images/' . Auth::user()->image) }}" alt="Profile Photo"
                                 class="rounded-circle" width="40" height="40">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown"
@@ -78,6 +78,6 @@
     </div>
 </nav>
 
-<div style="margin-top: 70px;">
+<div style="margin-top: 55px;">
     <!-- Konten di bawah navbar tetap -->
 </div>

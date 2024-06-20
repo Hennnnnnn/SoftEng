@@ -86,6 +86,10 @@ class HomeController extends Controller
 
         ];
 
-        return view('pages.diy-list', compact('list', 'list2'));
+        return view('pages.diy-list.index', compact('list', 'list2'));
+    }
+
+    public function add() {
+        return view('pages.diy-list.create');
     }
 }

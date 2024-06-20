@@ -18,41 +18,52 @@ class UserController extends Controller
         return view('pages.profile.profile', compact('user', 'followingCount', 'followersCount'));
     }
 
-    public function updateProfile(Request $request) {
-        // Validate the incoming request
-        $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        // Get the currently authenticated user
+    public function edit()
+    {
         $user = Auth::user();
+        return view('pages.profile.profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'telephone_number' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+            'gender' => 'nullable|string|max:10',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk gambar
+        ]);
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
+            $path = 'upload/profile_images/';
+            $file->move($path, $filename);
 
-            // Define the storage path for the profile images
-            $storagePath = 'public/profile_images';
-
-            // Store the file in the defined storage path
-            $file->storeAs($storagePath, $filename);
-
-            // Delete the old profile image if it exists
-            if ($user->image && Storage::exists($storagePath . '/' . $user->image)) {
-                Storage::delete($storagePath . '/' . $user->image);
+            // Hapus file lama jika ada
+            if ($user->image) {
+                Storage::disk('public')->delete($path . $user->image);
             }
 
-            // Update the user's profile image field with the new filename
+            // Simpan nama file ke basis data
             $user->image = $filename;
         }
 
-        // Save the user data
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->telephone_number = $request->input('telephone_number');
+        $user->address = $request->input('address');
+        $user->gender = $request->input('gender');
         $user->save();
 
-        // Redirect back with a success message
-        return redirect()->back()->with('status', 'Profile updated successfully!');
+        return redirect()->route('user.profile.index')->with('success', 'Profile updated successfully.');
     }
+
 
 
     public function follow(User $user)

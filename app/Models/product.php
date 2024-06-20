@@ -16,9 +16,13 @@ class product extends Model
         'image',
         'pengambilan',
         'delivery',
-        'sold'
+        'sold',
+        'user_id'
     ];
-
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'id'); // Sesuaikan dengan nama kolom yang sesuai di tabel produk
+    }
     public function purchases() {
         return $this->hasMany(Purchase::class);
     }

@@ -14,7 +14,7 @@
         </div>
         <div class="col-1 col-md-6 text-right" style="
         text-align: right;">
-            <a href="#" class="btn btn-success align-middle text-center">
+            <a href="{{ route('diy-list.add') }}" class="btn btn-success align-middle text-center">
                 +
             </a>
         </div>

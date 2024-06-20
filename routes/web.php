@@ -32,10 +32,10 @@ Route::get('/leaderboard', [
     LeaderboardController::class, 'show'
 ])->middleware(['auth', 'verified'])->name('leaderboard');
 
-
-Route::get('/diy-list', [
-    HomeController::class, 'showList'
-])->name('diy-list');;
+Route::middleware('auth')->group(function() {
+    Route::get('/diy-list', [HomeController::class, 'showList'])->name('diy-list');;
+    Route::get('/diy-list/add', [HomeController::class, 'add'])->name('diy-list.add');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -65,7 +65,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function() {
     Route::get('/user/profile', [UserController::class, 'index'])->name('user.profile.index');
-    Route::post('/user/profile', [UserController::class, 'updateProfile'])->name('user.profile.update');
+    Route::get('/user/profile/edit', [UserController::class, 'edit'])->name('user.profile.update.index');
+    Route::match(['put', 'patch'], '/user/profile/edit', [UserController::class, 'updateProfile'])->name('user.profile.update');
     Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
     Route::post('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
 });

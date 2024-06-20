@@ -53,6 +53,10 @@
                                 </span>
                             </div>
                         @endif
+
+                        <p class="card-text mt-auto">
+                            Sold by: {{ $item->users->name }}<!-- Menampilkan nama pengguna -->
+                        </p>
                     </div>
                 </div>
             </div>
