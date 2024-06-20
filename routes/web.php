@@ -8,6 +8,7 @@ use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\MarketplaceController;
 use App\Http\Controllers\RecyclingItemController;
+use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ Route::get('/', [
     HomeController::class, 'show'
 ]);
 
+// Route::get('/', [
+//     VoucherController::class, 'showMyVoucher'
+// ]);
 // Route::get('/leaderboard', function () {
 //     return view('pages.leaderboard');
 // });
@@ -61,6 +65,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/recycle', [RecyclingItemController::class, 'create'])->name('recycle.create');
     Route::post('/recycle', [RecyclingItemController::class, 'store'])->name('recycle.store');
 });
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/myVouchers', [VoucherController::class, 'showMyVoucher'])->name('myVouchers');
+    Route::get('/vouchersList', [VoucherController::class, 'showVoucherList'])->name('vouchersList');
+});
+
 
 
 Route::middleware('auth')->group(function() {
