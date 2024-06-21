@@ -34,7 +34,7 @@ class UserController extends Controller
             'telephone_number' => 'nullable|string|max:15',
             'address' => 'nullable|string|max:255',
             'gender' => 'nullable|string|max:10',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk gambar
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('image')) {

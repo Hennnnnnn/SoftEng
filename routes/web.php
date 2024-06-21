@@ -51,9 +51,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/discussion', [
-    DiscussionController::class, 'show'
-])->middleware(['auth', 'verified'])->name('discussion');
+Route::middleware('auth')->group(function() {
+    Route::get('/discussion', [DiscussionController::class, 'show'])->name('discussion');
+    Route::post('/discussion/store', [DiscussionController::class, 'store'])->name('discussion.store');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/marketplace', [MarketplaceController::class, 'show'])->name('marketplace');

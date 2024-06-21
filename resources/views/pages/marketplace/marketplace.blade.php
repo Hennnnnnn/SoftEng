@@ -55,7 +55,11 @@
                         @endif
 
                         <p class="card-text mt-auto">
-                            Sold by: {{ $item->users->name }}<!-- Menampilkan nama pengguna -->
+                            @if(empty($item->users))
+                                Sold by : ...
+                            @else
+                                Sold by: {{ $item->users->name }}
+                            @endif
                         </p>
                     </div>
                 </div>

@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
+use App\Models\Product; // Ensure correct case for models
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MarketplaceController extends Controller
 {
-    //
-
-    public function show(Request $request) {
+    public function show(Request $request)
+    {
         $query = $request->input('query');
-
-        $list = $query ? product::where('productName', 'like', '%'.$query.'%')->get() : product::all();
-        return view('pages.marketplace.marketplace', compact('list'));
+        $list = $query ? Product::where('productName', 'like', '%' . $query . '%')->get() : Product::all();
+        return view('pages.marketplace.marketplace', compact('list', 'query')); // Pass $query to the view
     }
 
-    public function view() {
+    public function view()
+    {
         return view('pages.marketplace.create');
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -33,7 +34,7 @@ class MarketplaceController extends Controller
         $filename = null;
         $path = null;
 
-        if ($request->has('image')) {
+        if ($request->hasFile('image')) { // Check for file existence using hasFile
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
@@ -41,7 +42,7 @@ class MarketplaceController extends Controller
             $file->move($path, $filename);
         }
 
-        Product::create([
+        $product = Product::create([
             'productName' => $request->productName,
             'productDescription' => $request->productDescription,
             'productPrice' => $request->productPrice,
@@ -51,6 +52,10 @@ class MarketplaceController extends Controller
             'user_id' => auth()->id(), // Assign the current user's id
         ]);
 
-        return redirect('/marketplace')->with('status', 'Product Created');
+        if ($product) {
+            return redirect('/marketplace')->with('status', 'Product Created');
+        } else {
+            return back()->withErrors('Failed to create product');
+        }
     }
 }

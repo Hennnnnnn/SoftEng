@@ -21,7 +21,7 @@ class product extends Model
     ];
     public function users()
     {
-        return $this->belongsTo(User::class, 'id'); // Sesuaikan dengan nama kolom yang sesuai di tabel produk
+        return $this->belongsTo(User::class, 'user_id'); // Sesuaikan dengan nama kolom yang sesuai di tabel produk
     }
     public function purchases() {
         return $this->hasMany(Purchase::class);
