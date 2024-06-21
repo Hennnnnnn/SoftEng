@@ -54,6 +54,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function() {
     Route::get('/discussion', [DiscussionController::class, 'show'])->name('discussion');
     Route::post('/discussion/store', [DiscussionController::class, 'store'])->name('discussion.store');
+    Route::post('/post/{postId}/like', [DiscussionController::class, 'addLike'])->name('discussion.like');
+    Route::delete('/post/{postId}/unlike', [DiscussionController::class, 'removeLike'])->name('discussion.unlike');
+
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -81,6 +84,8 @@ Route::middleware('auth')->group(function() {
     Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
     Route::post('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
 });
+
+
 
 Route::get('/test', [UserController::class, 'index']);
 
