@@ -36,7 +36,7 @@
                         <span class="main-dark-green font-weight-bold h4 mr-3">
                             {{ $loggedInUserRank }}
                         </span>
-                        <img src="#" class="rounded-circle img-thumbnail">
+                        <img src="{{ asset('upload/profile_images/' . Auth::user()->image) }}" class="rounded-circle img-thumbnail" style="width: 100; height: 100px; object-fit: cover;">
                         <span class="main-dark-green font-weight-bold h5">
                             {{ $loggedInUser->name }}
                         </span>
@@ -68,7 +68,7 @@
                         <span class="main-dark-green font-weight-bold h4 mr-3">
                             {{ $index + 1 }}
                         </span>
-                        <img src="#" class="rounded-circle img-thumbnail">
+                        <img src="{{ asset('upload/profile_images/' . $user->image) }}" class="rounded-circle img-thumbnail" style="width: 100; height: 100px; object-fit: cover;">
                         <span class="main-dark-green font-weight-bold h5">
                             {{ $user->name }}
                         </span>
