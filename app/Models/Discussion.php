@@ -9,9 +9,14 @@ class Discussion extends Model
     protected $fillable = [
         'user_id',
         'content',
-        'likes_count'
+        'likes_count',
+        'liked_by_users'
     ];
 
+    public function likedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'discussion_user_likes', 'discussion_id', 'user_id');
+    }
     // Relasi ke User
     public function users()
     {
