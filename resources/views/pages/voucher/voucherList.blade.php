@@ -15,7 +15,7 @@
     <div class="row mt-3">
         <div class="col-12">
             <span class="h4 font-weight-bold">
-               Vouchers for you
+                Vouchers for you
             </span>
         </div>
     </div>
@@ -37,9 +37,11 @@
                             </div>
                         </h5>
                         <p class="card-text mb-1 mt-2">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem repellat obcaecati doloribus asperiores, eos
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem repellat obcaecati
+                            doloribus asperiores, eos
                         </p>
-                        <button type="submit" class="rounded-3 btn bg-main-dark-green shadow text-center align-middle text-light font-weight-bold px-3 mt-2">
+                        <button type="submit"
+                            class="rounded-3 btn bg-main-dark-green shadow text-center align-middle text-light font-weight-bold px-3 mt-2">
                             Redeem voucher
                         </button>
                     </div>

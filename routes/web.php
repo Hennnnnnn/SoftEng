@@ -51,8 +51,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/voucher', [VoucherController::class, 'showVoucherList'])->name('voucher.list');
+});
+
 Route::middleware('auth')->group(function() {
-    Route::get('/discussion', [DiscussionController::class, 'show'])->name('discussion');
+    Route::get('/discussion', [DiscussionController::class, 'show'])->name('discussion.show');
     Route::post('/discussion/store', [DiscussionController::class, 'store'])->name('discussion.store');
     Route::post('/post/{postId}/like', [DiscussionController::class, 'addLike'])->name('discussion.like');
     Route::delete('/post/{postId}/unlike', [DiscussionController::class, 'removeLike'])->name('discussion.unlike');

@@ -2,31 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DIY;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
     public function show () {
 
-        $list = [
-            [
-                "name" => "DIY TUTOR 1",
-                "username" => "user1",
-                "likes" => 100000,
+        $list = DIY::all();
 
-            ],
-            [
-                "name" => "DIY TUTOR 2",
-                "username" => "user3",
-                "likes" => 1000000
-            ],
-            [
-                "name" => "DIY TUTOR 3",
-                "username" => "user3",
-                "likes" => 10
-            ],
-
-        ];
         return view('pages.home', compact('list'));
     }
 

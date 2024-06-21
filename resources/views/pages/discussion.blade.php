@@ -3,26 +3,31 @@
 <x-navbar />
 
 <div class="p-4">
-    <form action="{{ route('diy-list') }}" method="GET" id="searchForm" class="input-group w-90 mx-auto">
+    <form action="{{ route('discussion.show') }}" method="GET" id="searchForm" class="input-group w-90 mx-auto">
         <input type="text" name="query" id="searchBox" placeholder="Search..."
-            class="form-control rounded-pill shadow p-3 mt-4">
+            class="form-control rounded-pill shadow p-3 mt-4" value="{{ $query ?? '' }}">
     </form>
     <div class="row">
         <div class="col-12 col-md-6 align-middle">
-            <div class="row border-bottom border-3 border-main-dark-green px-1 py-4">
-                <div class="col-2 align-middle">
-                    <img src="{{ asset('upload/profile_images/' . Auth::user()->image) }}" class="img-circle">
+            <form action="{{ route('discussion.store') }}" method="POST">
+                @csrf
+                <div class="row border-bottom border-3 border-main-dark-green px-1 py-4">
+                    <div class="col-2 align-middle">
+                        <img src="{{ asset('upload/profile_images/' . Auth::user()->image) }}" class="img-circle">
+                    </div>
+                    <div class="col-7 d-flex align-items-end pb-3">
+                        <input type="text" name="content" class="form-control border-0 no-border"
+                            placeholder="Start A Discussion...">
+                    </div>
+                    <div class="col-3 d-flex align-items-center justify-content-end">
+                        <button type="submit"
+                            class="rounded-3 btn bg-main-dark-green shadow text-center align-middle text-light font-weight-bold px-3">
+                            Post
+                        </button>
+                    </div>
                 </div>
-                <div class="col-7 d-flex align-items-end pb-3">
-                    <input type="text" class="form-control border-0 no-border" placeholder="Start A Discussion...">
-                </div>
-                <div class="col-3 d-flex align-items-center justify-content-end">
-                    <button type="button"
-                        class="rounded-3 btn bg-main-dark-green shadow text-center align-middle text-light font-weight-bold px-3">
-                        Post
-                    </button>
-                </div>
-            </div>
+            </form>
+
             <div class="row">
                 <div class="col-12 ">
                     @foreach ($postList as $item)
@@ -63,7 +68,7 @@
                                         <span></span>
                                     @endif
                                 </div>
-                                <div class="col-12 text-wrap">
+                                <div class="col-12 text-wrap" style="white-space: normal; overflow-wrap: break-word; word-wrap: break-word;">
                                     {{ $item->content }}
                                 </div>
                                 <div class="col-12 d-flex justify-content-between w-50 align-items-middle mt-3">

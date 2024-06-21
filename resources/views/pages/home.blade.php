@@ -23,15 +23,15 @@
                     <div class="col-12 col-md-6">
                         <div class="col-12">
                             <span class="h4">
-                                {{ $item['name'] }}
+                                {{ $item->title }}
                             </span>
                         </div>
                         <div class="col-12">
-                            {{ $item['username'] }}
+                            {{ $item->users->name }}
                         </div>
                         <div class="col-12">
                             <span class="fs-12">
-                                {{ formatLikes($item['likes']) }} likes | 1 Month Ago
+                                {{ formatLikes($item->likes_count) }} likes | {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                             </span>
                         </div>
                     </div>

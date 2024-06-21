@@ -11,13 +11,21 @@ use Illuminate\Support\Facades\Auth;
 class DiscussionController extends Controller
 {
     //
-    public function show()
-    {
-        $postList = Discussion::all();
-        $userList = User::all();
-        $authUser = auth()->user();
 
-        return view('pages.discussion', compact('postList', 'userList', 'authUser'));
+    public function show(Request $request)
+    {
+        $query = $request->input('query');
+        if ($query) {
+            $postList = Discussion::whereHas('user', function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%');
+            })->get();
+        } else {
+            $postList = Discussion::all();
+        }
+
+        $userList = User::all();
+
+        return view('pages.discussion', compact('postList', 'userList', 'query'));
     }
 
     public function store(Request $request)
