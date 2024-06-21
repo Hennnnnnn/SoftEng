@@ -8,50 +8,53 @@
             <hr class="border-main-dark-green border-4 ">
         </div>
     </div>
-    <form action="{{ route('marketplace.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('diy-list.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <!-- Product Image -->
+        <!-- Video Title -->
         <div class="row mb-4 form-group">
             <div class="col-3">
-                <label for="productImage" class="block text-sm font-medium text-gray-700">Product Image</label>
+                <label for="videoTitle" class="block text-sm font-medium text-gray-700">DIY Title</label>
             </div>
             <div class="col-6">
-                <input type="file" name="image" id="productImage" accept="image/*"
-                    class="d-none">
-                <label for="productImage" class="square-label">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
-                        </svg>
+                <input type="text" name="title" id="videoTitle"
+                    class="mt-1 p-2 border rounded-md w-full form-control" value="{{ old('title') }}"
+                    placeholder="Enter video title">
+                @error('title')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Video Description -->
+        <div class="mb-4 row form-group">
+            <div class="col-3">
+                <label for="videoDescription" class="block text-sm font-medium text-gray-700">DIY Description</label>
+            </div>
+            <div class="col-6">
+                <textarea name="description" id="videoDescription" rows="4" class="mt-1 p-2 border rounded-md w-full form-control"
+                    placeholder="Enter video description">{{ old('description') }}</textarea>
+                @error('description')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Video Upload -->
+        <div class="row mb-4 form-group">
+            <div class="col-3">
+                <label for="diyImage" class="block text-sm font-medium text-gray-700">DIY Image</label>
+            </div>
+            <div class="col-6">
+                <input type="file" name="image" id="diyImage" accept="image/*" class="d-none">
+                <label for="diyImage" class="square-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                    </svg>
                 </label>
-                @error('productImage')
-                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <!-- Product Name -->
-        <div class="mb-4 row form-group">
-            <div class="col-3">
-                <label for="videoTitle" class="block text-sm font-medium text-gray-700">Video Title</label>
-            </div>
-            <div class="col-6">
-                <input type="text" name="videoTitle" id="videoTitle" class="mt-1 p-2 border rounded-md w-full form-control"
-                    value="{{ old('videoTitle') }}" placeholder="Enter product name">
-                @error('videoTitle')
-                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <!-- Product Description -->
-        <div class="mb-4 row form-group">
-            <div class="col-3">
-                <label for="videoDescription" class="block text-sm font-medium text-gray-700">Video Description</label>
-            </div>
-            <div class="col-6">
-                <textarea name="videoDescription" id="videoDescription" rows="4" class="mt-1 p-2 border rounded-md w-full form-control" placeholder="Enter product description">{{ old('videoDescription') }}</textarea>
-                @error('videoDescription')
+                @error('diyImage')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                 @enderror
             </div>
@@ -64,4 +67,5 @@
             </div>
         </div>
     </form>
+
 </div>

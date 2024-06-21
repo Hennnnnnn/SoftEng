@@ -22,7 +22,7 @@ use App\Http\Controllers\VoucherController;
 */
 
 Route::get('/', [
-    HomeController::class, 'show'
+    HomeController::class, 'index'
 ]);
 
 // Route::get('/', [
@@ -37,8 +37,9 @@ Route::get('/leaderboard', [
 ])->middleware(['auth', 'verified'])->name('leaderboard');
 
 Route::middleware('auth')->group(function() {
-    Route::get('/diy-list', [HomeController::class, 'showList'])->name('diy-list');;
+    Route::get('/diy-list', [HomeController::class, 'show'])->name('diy-list');;
     Route::get('/diy-list/add', [HomeController::class, 'add'])->name('diy-list.add');
+    Route::post('/diy-list/create', [HomeController::class, 'create'])->name('diy-list.create');
 });
 
 Route::get('/dashboard', function () {

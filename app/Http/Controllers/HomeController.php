@@ -4,18 +4,64 @@ namespace App\Http\Controllers;
 
 use App\Models\DIY;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    public function show () {
+    public function show()
+    {
+        $list = DIY::orderBy('created_at', 'desc')->get();
+        $listTrending = DIY::orderBy('likes_count', 'desc')->get();
 
+        return view('pages.diy-list.index', compact('list', 'listTrending'));
+    }
+
+    public function index()
+    {
         $list = DIY::all();
 
         return view('pages.home', compact('list'));
     }
 
-    public function showList() {
+    public function add(Request $request)
+    {
+        return view('pages.diy-list.create');
+    }
+
+    public function create(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:500',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adjust validation rules as needed
+        ]);
+
+        // Initialize imagePath variable
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $path = 'upload/diy/';
+            $file->move(public_path($path), $filename); // Save the file to public disk
+            $imagePath = $path . $filename;
+        }
+
+        DIY::create([
+            'user_id' => auth()->id(),
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $imagePath, // Assign imagePath which may be null
+        ]);
+
+        return redirect()->route('diy-list')->with('success', 'DIY item created successfully.');
+    }
+
+    public function showList()
+    {
         $list = [
             [
                 "name" => "DIY TUTOR 1 NEW",
@@ -67,14 +113,8 @@ class HomeController extends Controller
 
         ];
 
-        $list2 = [
-
-        ];
+        $list2 = [];
 
         return view('pages.diy-list.index', compact('list', 'list2'));
-    }
-
-    public function add() {
-        return view('pages.diy-list.create');
     }
 }

@@ -10,7 +10,6 @@
     </div>
     <form action="{{ route('marketplace.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         <!-- Product Image -->
         <div class="row mb-4 form-group">
             <div class="col-3">

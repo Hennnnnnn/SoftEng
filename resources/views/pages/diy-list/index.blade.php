@@ -24,19 +24,23 @@
         <div class="col-3">
             <div class="card shadow mr-4 my-1">
                 <div class="card-img-container">
-                    <img src="https://picsum.photos/50" class="card-img-top rounded img-thumbnail">
+                    @if ($item->image)
+                        <img src="{{ $item->image }}" class="card-img-top rounded img-thumbnail" alt="{{ $item->title }}">
+                    @else
+                        <p>No Image Available</p>
+                    @endif
                 </div>
                 </img>
                 <div class="card-body">
                     <h5 class="card-title">
-                        {{ $item['name'] }}
+                        {{ $item->users->name }}
                     </h5>
                     <p class="card-text">
                         {{ $item['username'] }}
                     </p>
                     <div class="card-text">
                         <span class="fs-12">
-                            {{ formatLikes($item['likes']) }} likes | 1 Month Ago
+                            {{ formatLikes($item->likes_count) }} likes | {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                         </span>
                     </div>
                 </div>
@@ -54,23 +58,23 @@
     </div>
 
     <div class="row mt-4">
-        @foreach($list as $item)
+        @foreach($listTrending as $item)
             <div class="col-12 col-md-3 mt-3 mr-4">
                 <div class="card shadow">
                     <div class="card-img-container">
-                        <img src="https://picsum.photos/50" class="card-img-top rounded img-thumbnail">
+                        <img src="{{ $item->image }}" class="card-img-top rounded img-thumbnail">
                     </div>
                     </img>
                     <div class="card-body">
                         <h5 class="card-title">
-                            {{ $item['name'] }}
+                            {{ $item->title }}
                         </h5>
                         <p class="card-text">
-                            {{ $item['username'] }}
+                            {{ $item->users->name }}
                         </p>
                         <div class="card-text">
                             <span class="fs-12">
-                                {{ formatLikes($item['likes']) }} likes | 1 Month Ago
+                                {{ formatLikes($item->likes_count) }} likes | {{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
                             </span>
                         </div>
                     </div>

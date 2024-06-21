@@ -18,7 +18,7 @@
                         {{ $loop->index + 1 }}.
                     </div>
                     <div class="col-11 col-md-5">
-                        <img src="https://picsum.photos/150" class="rounded img-thumbnail">
+                        <img src="{{ $item->image }}" alt="video" class="rounded img-thumbnail">
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="col-12">
