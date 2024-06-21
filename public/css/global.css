@@ -101,6 +101,10 @@ html, body {
     height: 100%;
 }
 
+.w-40 {
+    max-width: 40% !important;
+}
+
 
 .square-label {
     display: inline-block;
@@ -113,4 +117,11 @@ html, body {
     justify-content: center;
     cursor: pointer;
     background-color: #f9f9f9;
+}
+
+.bg-image-box {
+    background-image: url('../assets/bg-logo.png');
+    background-size: cover;
+    background-position: center;
+    height: 300px; /* Adjust height as needed */
 }

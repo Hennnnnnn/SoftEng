@@ -1,4 +1,10 @@
 <x-guest-layout>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-between align-items-end">
+            <h1 style="text-align: end; color: #579966; font-weight: bold">Register</h1>
+            <h1 style="text-align: end; color: #579966; font-weight: bold; font-size: 20px">Recraftify</h1>
+        </div>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
