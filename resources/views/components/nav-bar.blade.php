@@ -78,6 +78,6 @@
     </div>
 </nav>
 
-<div style="margin-top: 55px;">
+<div style="margin-top: 65px;">
     <!-- Konten di bawah navbar tetap -->
 </div>
