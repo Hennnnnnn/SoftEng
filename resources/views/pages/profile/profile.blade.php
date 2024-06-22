@@ -118,8 +118,8 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-12">
-                        <p class="h6">{{ $followingCount }} <span class="divider mx-5">|</span>
-                            {{ $followersCount }}</p>
+                        <p class="h6">{{ $followersCount }} <span class="divider mx-5">|</span>
+                            {{ $followingCount }}</p>
                     </div>
                 </div>
             </div>
